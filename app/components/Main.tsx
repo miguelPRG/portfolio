@@ -1,7 +1,8 @@
-import { svg } from "motion/react-m";
-import ProjectCard from "./Project";
+import Project from "./Project";
 import Service from "./Service";
 import Social from "./Social";
+import project1 from "../images/project1.png";
+
 
 export default function Main() {
   return (
@@ -9,34 +10,34 @@ export default function Main() {
       <section id="projects">
         <h2 className="text-red mb-3">My Work</h2>
         <h3>Check out my featured projects</h3>
-        <div className="grid grid-flow-col grid-rows-6 md:grid-rows-2 gap-4 p-20 mb-20">
-          <ProjectCard
-            imageUrl="/project1.png"
-            title="Project One"
-            para="This is a brief description of Project One."
+        <div className="grid grid-flow-col grid-rows-6 sm:grid-rows-3 lg:grid-rows-2 gap-6 p-20 mb-20 max-w-6xl mx-auto">
+          <Project
+            image={project1}
+            title="Best Wines EU"
+            para="Interactive Streamlit web app for exploring and analyzing European wine data."
           />
-          <ProjectCard
-            imageUrl="/project2.png"
+          <Project
+            image={""}
             title="Project Two"
             para="This is a brief description of Project Two."
           />
-          <ProjectCard
-            imageUrl="/project3.png"
+          <Project
+            image={""}
             title="Project Three"
             para="This is a brief description of Project Three."
           />
-          <ProjectCard
-            imageUrl="/project4.png"
+          <Project
+            image={""}
             title="Project Four"
             para="This is a brief description of Project Four."
           />
-          <ProjectCard
-            imageUrl="/project5.png"
+          <Project
+            image={""}
             title="Project Five"
             para="This is a brief description of Project Five."
           />
-          <ProjectCard
-            imageUrl="/project6.png"
+          <Project
+            image={""}
             title="Project Six"
             para="This is a brief description of Project Six."
           />

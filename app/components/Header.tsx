@@ -1,6 +1,7 @@
 import "../styles/Header.css";
 import Image from "next/image";
 import TechnologyCard from "./TechnologyCard";
+import image from "../images/foto.png";
 
 export default function Header() {
   return (
@@ -11,14 +12,13 @@ export default function Header() {
           className="mt-30 flex flex-col items-center w-1/2 text-white text-justify-center"
         >
           <Image
-            src="/profile-picture.png"
+            src={image}
             alt="Foto de perfil de Miguel Gonçalves"
-            width={150}
-            height={150}
-            className="rounded-full border-4 border-white shadow-lg mb-15"
+            width={250}
+            className="rounded-2xl mb-5 border-3 border-gray-200"
           />
           <p className="mb-5">
-            Hello World! My name is Miguel Gonçalves and I am
+            Hello World! My name is <span className="text-red font-bold">Miguel Gonçalves</span> and I am
           </p>
           <h1 className="mb-5 text-center">Full Stack Developer</h1>
           <p className="text-gray-300 w-full max-w-xl">

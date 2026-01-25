@@ -18,14 +18,14 @@ export default function TechnologyCard({ technology }: { technology: string }) {
 
   return (
     <div className="p-2 bg-gray-700 rounded-xl hover:scale-105 hover:bg-gray-400 transition-all duration-300">
-      <p className="flex items-center gap-2">
+      <p className="flex items-center gap-3 text-lg font-medium">
         {technology === "github" ? (
           <svg
             className="text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -40,8 +40,8 @@ export default function TechnologyCard({ technology }: { technology: string }) {
             className=" text-red"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -52,15 +52,15 @@ export default function TechnologyCard({ technology }: { technology: string }) {
             className=" text-blue"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
             <path d="m3 2 1.578 17.834L12 22l7.468-2.165L21 2H3Zm13.3 14.722-4.293 1.204H12l-4.297-1.204-.297-3.167h2.108l.15 1.526 2.335.639 2.34-.64.245-3.05h-7.27l-.187-2.006h7.64l.174-2.006H6.924l-.176-2.006h10.506l-.954 10.71Z" />
           </svg>
         ) : technology === "javascript" ? (
-          <span className="material-symbols-outlined  text-yellow">
+          <span className="material-symbols-outlined text-yellow text-3xl">
             javascript
           </span>
         ) : technology === "react" ? (
@@ -68,8 +68,8 @@ export default function TechnologyCard({ technology }: { technology: string }) {
             className=" text-blue"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
@@ -81,8 +81,8 @@ export default function TechnologyCard({ technology }: { technology: string }) {
             className="text-green"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             fill="none"
             viewBox="0 0 24 24"
           >

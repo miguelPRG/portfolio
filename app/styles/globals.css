@@ -33,28 +33,25 @@ body {
 }
 
 h1 {
-  @apply text-4xl font-extrabold;
-}
-
-h2 {
   @apply text-3xl font-extrabold;
 }
 
-h3 {
+h2 {
   @apply text-2xl font-extrabold;
 }
 
-h4 {
+h3 {
   @apply text-xl font-extrabold;
 }
 
-h5 {
+h4 {
   @apply text-lg font-extrabold;
 }
 
 p {
   font-weight: 400;
   line-height: 1.6;
+  font-size: 1.2rem;
 }
 
 @layer components {
