@@ -10,21 +10,20 @@ export default function Photo({ image }: { image: StaticImageData }) {
 
   return (
     <div
-      className="relative cursor-pointer mb-30"
+      className="mb-30"
       style={{ width: 350, height: 447, perspective: "1000px" }}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
     >
       <motion.div
-        className="relative w-full h-full"
-        style={{ transformStyle: "preserve-3d" }}
+        className="w-full h-full"
+        style={{ transformStyle: "preserve-3d", position: "relative" }}
         animate={{ rotateY: isFlipped ? 180 : 0 }}
         transition={{ duration: 0.6 }}
       >
         {/* Frente - Foto */}
         <div
-          className="absolute w-full h-full"
-          style={{ backfaceVisibility: "hidden" }}
+          className="backface-hidden absolute w-full h-full"
         >
           <Image
             src={image}
@@ -36,13 +35,16 @@ export default function Photo({ image }: { image: StaticImageData }) {
 
         {/* Verso - Stack */}
         <div
-          className="absolute w-full h-full from-gray-900 to-black rounded-2xl border-3 border-gray-200 grid grid-cols-2 gap-2 p-5"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          className="absolute w-full h-full rounded-2xl border-3 border-gray-200 from-gray-900 to-black backface-hidden transform rotate-y-180 flex flex-col items-center justify-center p-6"
+          style={{height: 520}}
         >
-          <Technology name="fastAPI" />
-          <Technology name="react" />
-          <Technology name="mongoDB" />
-          <Technology name="nextJS" />
+          <h1 className="text-white text-2xl font-bold mb-15">My Frameworks</h1>
+          <div className="grid grid-cols-2 gap-20 place-items-center">
+            <Technology name="fastAPI" />
+            <Technology name="react" />
+            <Technology name="mongoDB" />
+            <Technology name="nextJS" />
+          </div>
         </div>
       </motion.div>
     </div>

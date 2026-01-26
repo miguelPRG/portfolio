@@ -1,25 +1,50 @@
 
+import { motion } from "motion/react";
+import { h2 } from "motion/react-client";
+
 export default function nameCard({ name }: { name: string }) {
   const options = new Set(["fastAPI", "react", "mongoDB", "nextJS"]);
 
   if (!name || !options.has(name)) {
     return <p>Invalid name</p>;
   }
-  const texto =
-    name === "html" || name === "css"
-      ? name.toUpperCase()
-      : name.charAt(0).toUpperCase() + name.slice(1);
+  const delays = {
+    fastAPI: 0,
+    react: 0.2,
+    mongoDB: 0.4,
+    nextJS: 0.6,
+  };
+
+  const displayNames = {
+    fastAPI: "FastAPI",
+    react: "React",
+    mongoDB: "MongoDB",
+    nextJS: "Next.js",
+  };
 
   return (
-    <div>
+    <motion.div
+      className="flex items-center justify-center relative group"
+      animate={{ y: [0, -10, 0] }}
+      transition={{
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay: delays[name as keyof typeof delays],
+      }}
+    >
+      {/* Tooltip */}
+      <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+        {displayNames[name as keyof typeof displayNames]}
+      </span>
       {name == "fastAPI" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           id="Fastapi-Icon--Streamline-Svg-Logos"
-          height="24"
-          width="24"
+          height="100"
+          width="100"
         >
           <desc>Fastapi Icon Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -34,8 +59,8 @@ export default function nameCard({ name }: { name: string }) {
           fill="none"
           viewBox="0 0 24 24"
           id="React--Streamline-Svg-Logos"
-          height="24"
-          width="24"
+          height="100"
+          width="100"
         >
           <desc>React Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -50,8 +75,8 @@ export default function nameCard({ name }: { name: string }) {
           fill="none"
           viewBox="0 0 24 24"
           id="Mongodb-Icon--Streamline-Svg-Logos"
-          height="24"
-          width="24"
+          height="100"
+          width="100"
         >
           <desc>Mongodb Icon Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -66,8 +91,8 @@ export default function nameCard({ name }: { name: string }) {
           fill="none"
           viewBox="0 0 96 96"
           id="Nextjs-Icon--Streamline-Svg-Logos"
-          height="24"
-          width="24"
+          height="100"
+          width="100"
         >
           <desc>Nextjs Icon Streamline Icon: https://streamlinehq.com</desc>
           <mask
@@ -106,8 +131,8 @@ export default function nameCard({ name }: { name: string }) {
               y2="5357.5"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#fff"></stop>
-              <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+              <stop stopColor="#fff"></stop>
+              <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
             </linearGradient>
             <linearGradient
               id="c"
@@ -117,12 +142,12 @@ export default function nameCard({ name }: { name: string }) {
               y2="2790.41"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#fff"></stop>
-              <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+              <stop stopColor="#fff"></stop>
+              <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
             </linearGradient>
           </defs>
         </svg>
       ) : null}
-    </div>
+    </motion.div>
   );
 }
