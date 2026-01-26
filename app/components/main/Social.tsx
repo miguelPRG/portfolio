@@ -18,7 +18,9 @@ export default function Social({
     >
       {social}
       {name}
-      <span className="material-symbols-outlined ml-auto transition-transform hover:translate-x-1">arrow_outward</span>
+      <span className="material-symbols-outlined ml-auto transition-transform hover:translate-x-1">
+        arrow_outward
+      </span>
     </a>
   );
 }

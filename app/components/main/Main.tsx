@@ -1,8 +1,8 @@
 import Project from "./Project";
 import Service from "./Service";
 import Social from "./Social";
-import project1 from "../images/project1.png";
-
+import project1 from "../../images/project1.png";
+import project2 from "../../images/project2.png";
 
 export default function Main() {
   return (
@@ -10,18 +10,18 @@ export default function Main() {
       <section id="projects">
         <h2 className="text-red mb-3">My Work</h2>
         <h3>Check out my featured projects</h3>
-        <div className="grid grid-flow-col grid-rows-6 sm:grid-rows-3 lg:grid-rows-2 gap-6 p-20 mb-20 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2  gap-6 p-20 mb-20 max-w-6xl mx-auto">
           <Project
             image={project1}
             title="Best Wines EU"
             para="Interactive Streamlit web app for exploring and analyzing European wine data."
           />
           <Project
-            image={""}
-            title="Project Two"
-            para="This is a brief description of Project Two."
+            image={project2}
+            title="Weather App"
+            para="Weather App is a modern web application that displays weather data for your current location and any city you search for."
           />
-          <Project
+          {/*<Project
             image={""}
             title="Project Three"
             para="This is a brief description of Project Three."
@@ -40,7 +40,7 @@ export default function Main() {
             image={""}
             title="Project Six"
             para="This is a brief description of Project Six."
-          />
+          />*/}
         </div>
       </section>
       <section id="services" className="bg-black p-5">
