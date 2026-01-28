@@ -10,16 +10,18 @@ export default function Main() {
       <section id="projects">
         <h2 className="text-red mb-3">My Work</h2>
         <h3>Check out my featured projects</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2  gap-6 p-20 mb-20 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2  gap-10 p-20 mb-20 max-w-6xl mx-auto">
           <Project
             image={project1}
             title="Best Wines EU"
             para="Interactive Streamlit web app for exploring and analyzing European wine data."
+            link="https://github.com/miguelPRG/Best-Wines-EU"
           />
           <Project
             image={project2}
             title="Weather App"
             para="Weather App is a modern web application that displays weather data for your current location and any city you search for."
+            link="https://github.com/miguelPRG/Weather-App"
           />
           {/*<Project
             image={""}

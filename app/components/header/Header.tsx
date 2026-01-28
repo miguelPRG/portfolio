@@ -20,7 +20,7 @@ export default function Header() {
           <p className="text-gray-300 w-full max-w-xl">
             I transform ideas into high-quality, intuitive, and easy-to-use
             software. I have the ability to adapt to any development technology
-            with considerable ease.
+            with considerable ease. Hover over my picture to see my skills!
           </p>
         </div>
         <p className="">

@@ -1,4 +1,3 @@
-
 import { motion } from "motion/react";
 import { h2 } from "motion/react-client";
 

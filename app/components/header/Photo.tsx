@@ -22,9 +22,7 @@ export default function Photo({ image }: { image: StaticImageData }) {
         transition={{ duration: 0.6 }}
       >
         {/* Frente - Foto */}
-        <div
-          className="backface-hidden absolute w-full h-full"
-        >
+        <div className="backface-hidden absolute w-full h-full">
           <Image
             src={image}
             alt="Foto de perfil de Miguel Gonçalves"
@@ -36,7 +34,7 @@ export default function Photo({ image }: { image: StaticImageData }) {
         {/* Verso - Stack */}
         <div
           className="absolute w-full h-full rounded-2xl border-3 border-gray-200 from-gray-900 to-black backface-hidden transform rotate-y-180 flex flex-col items-center justify-center p-6"
-          style={{height: 520}}
+          style={{ height: 520 }}
         >
           <h1 className="text-white text-2xl font-bold mb-15">My Frameworks</h1>
           <div className="grid grid-cols-2 gap-20 place-items-center">
