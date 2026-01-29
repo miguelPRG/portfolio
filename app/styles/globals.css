@@ -21,6 +21,10 @@
 
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Inconsolata", monospace;
   font-optical-sizing: auto;

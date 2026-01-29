@@ -23,7 +23,7 @@ export default function Header() {
             with considerable ease. Hover over my picture to see my skills!
           </p>
         </div>
-        <p className="">
+        <a href="#projects" className="cursor-pointer hover:opacity-70 transition-opacity">
           <svg
             className="w-15 h-15 text-gray-300"
             aria-hidden="true"
@@ -41,7 +41,7 @@ export default function Header() {
               d="m8 7 4 4 4-4m-8 6 4 4 4-4"
             />
           </svg>
-        </p>
+        </a>
       </div>
     </header>
   );
