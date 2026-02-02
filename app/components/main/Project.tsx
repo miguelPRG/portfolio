@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { StaticImageData } from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Project({
   image,

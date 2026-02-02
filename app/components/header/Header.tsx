@@ -23,7 +23,10 @@ export default function Header() {
             with considerable ease. Hover over my picture to see my skills!
           </p>
         </div>
-        <a href="#projects" className="cursor-pointer hover:opacity-70 transition-opacity">
+        <a
+          href="#projects"
+          className="cursor-pointer hover:opacity-70 transition-opacity"
+        >
           <svg
             className="w-15 h-15 text-gray-300"
             aria-hidden="true"
