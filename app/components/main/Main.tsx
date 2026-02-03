@@ -21,7 +21,7 @@ export default function Main() {
             image={project2}
             title="Weather App"
             para="Weather App is a modern web application that displays weather data for your current location and any city you search for."
-            link="https://github.com/miguelPRG/Weather-App"
+            link="https://github.com/miguelPRG/WeatherApp"
           />
           {/*<Project
             image={""}

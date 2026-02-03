@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { h2 } from "motion/react-client";
 
-export default function nameCard({ name }: { name: string }) {
+export default function Technology({ name }: { name: string }) {
   const options = new Set(["fastAPI", "react", "mongoDB", "nextJS"]);
 
   if (!name || !options.has(name)) {
@@ -44,6 +44,7 @@ export default function nameCard({ name }: { name: string }) {
           id="Fastapi-Icon--Streamline-Svg-Logos"
           height="100"
           width="100"
+          aria-label="fastAPI"
         >
           <desc>Fastapi Icon Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -60,6 +61,7 @@ export default function nameCard({ name }: { name: string }) {
           id="React--Streamline-Svg-Logos"
           height="100"
           width="100"
+          aria-label="react"
         >
           <desc>React Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -76,6 +78,7 @@ export default function nameCard({ name }: { name: string }) {
           id="Mongodb-Icon--Streamline-Svg-Logos"
           height="100"
           width="100"
+          aria-label="mongoDB"
         >
           <desc>Mongodb Icon Streamline Icon: https://streamlinehq.com</desc>
           <path
@@ -92,6 +95,7 @@ export default function nameCard({ name }: { name: string }) {
           id="Nextjs-Icon--Streamline-Svg-Logos"
           height="100"
           width="100"
+          aria-label="nextJS"
         >
           <desc>Nextjs Icon Streamline Icon: https://streamlinehq.com</desc>
           <mask
