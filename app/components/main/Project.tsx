@@ -52,9 +52,10 @@ export default function Project({
 
             {/* Ícone clicável no canto inferior direito */}
             <button
+              type="button"
               onClick={() => setIsFlipped(true)}
-              className="absolute bottom-3 right-3 bg-white text-black p-2 rounded-full shadow-lg hover:bg-gray-100 transition cursor-pointer"
-              aria-label="Virar cartão"
+              className="absolute bottom-3 right-3 cursor-pointer rounded-full bg-white p-2 text-black shadow-lg transition hover:bg-gray-100"
+              aria-label="Flip card to see repository link"
             >
               <svg
                 width="20"
@@ -73,14 +74,14 @@ export default function Project({
 
         {/* Trás do cartão */}
         <div className="absolute inset-0 bg-gray-700 text-white rounded-lg backface-hidden transform rotate-y-180 p-6 flex flex-col items-center justify-center">
-          <p className="text-2xl font-semibold">
+          <p className="font-sans text-2xl font-semibold">
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:underline"
             >
-              Watch this project live!
+              View repository
               <svg
                 className="w-6 h-6 text-white "
                 aria-hidden="true"
@@ -106,9 +107,10 @@ export default function Project({
 
           {/* Ícone de voltar */}
           <button
+            type="button"
             onClick={() => setIsFlipped(false)}
-            className="absolute bottom-3 right-3 bg-white p-2 rounded-full text-gray-700 hover:bg-gray-100 transition cursor-pointer"
-            aria-label="Voltar"
+            className="absolute bottom-3 right-3 cursor-pointer rounded-full bg-white p-2 text-gray-700 transition hover:bg-gray-100"
+            aria-label="Flip back to project summary"
           >
             <svg
               width="20"

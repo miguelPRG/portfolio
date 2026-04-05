@@ -25,8 +25,10 @@ export default function Photo({ image }: { image: StaticImageData }) {
         <div className="backface-hidden absolute w-full h-full">
           <Image
             src={image}
-            alt="Foto de perfil de Miguel Gonçalves"
+            alt="Retrato profissional de Miguel Gonçalves, desenvolvedor full stack"
             width={350}
+            height={447}
+            priority
             className="rounded-2xl border-3 border-gray-200 object-cover"
           />
         </div>
@@ -36,7 +38,9 @@ export default function Photo({ image }: { image: StaticImageData }) {
           className="absolute w-full h-full rounded-2xl border-3 border-gray-200 from-gray-900 to-black backface-hidden transform rotate-y-180 flex flex-col items-center justify-center p-6"
           style={{ height: 520 }}
         >
-          <h1 className="text-white text-2xl font-bold mb-15">My Frameworks</h1>
+          <h2 className="mb-15 font-sans text-2xl font-bold text-white">
+            Tech stack
+          </h2>
           <div className="grid grid-cols-2 gap-20 place-items-center">
             <Technology name="fastAPI" />
             <Technology name="react" />

@@ -1,3 +1,4 @@
+
 import Project from "./Project";
 import Service from "./Service";
 import Social from "./Social";
@@ -6,15 +7,27 @@ import project2 from "../../images/project2.png";
 
 export default function Main() {
   return (
-    <main className="text-center">
-      <section id="projects">
-        <h2 className="text-red mb-3">My Work</h2>
-        <h3>Check out my featured projects</h3>
-        <div className="grid grid-cols-1 lg:grid-cols-2  gap-10 p-20 mb-20 max-w-6xl mx-auto">
+    <main
+      id="main-content"
+      className="text-center"
+      tabIndex={-1}
+    >
+      <section
+        id="projects"
+        className="section-container pb-20"
+        aria-labelledby="projects-heading"
+      >
+        <h2 id="projects-heading" className="mb-2 font-sans text-red">
+          Selected work
+        </h2>
+        <p className="mb-12 font-sans text-xl font-semibold text-gray-100 sm:text-2xl">
+          Featured projects
+        </p>
+        <div className="mx-auto mb-20 grid max-w-6xl grid-cols-1 gap-10 px-0 lg:grid-cols-2 lg:gap-12">
           <Project
             image={project1}
             title="Best Wines EU"
-            para="Interactive Streamlit web app for exploring and analyzing European wine data."
+            para="Streamlit app for exploring and analysing European wine data — interactive charts and filters."
             link="https://github.com/miguelPRG/Best-Wines-EU"
           />
           <Project
@@ -23,69 +36,67 @@ export default function Main() {
             para="Weather App is a modern web application that displays weather data for your current location and any city you search for."
             link="https://github.com/miguelPRG/WeatherApp"
           />
-          {/*<Project
-            image={""}
-            title="Project Three"
-            para="This is a brief description of Project Three."
-          />
-          <Project
-            image={""}
-            title="Project Four"
-            para="This is a brief description of Project Four."
-          />
-          <Project
-            image={""}
-            title="Project Five"
-            para="This is a brief description of Project Five."
-          />
-          <Project
-            image={""}
-            title="Project Six"
-            para="This is a brief description of Project Six."
-          />*/}
         </div>
       </section>
-      <section id="services" className="bg-black p-5">
-        <h2 className="text-red mb-3">My Services</h2>
-        <h3 className="mb-15">How can I help your business</h3>
-        <div className="flex flex-row p-5 gap-5 flex-wrap justify-center">
-          <Service
-            svg={
-              <span className="material-symbols-outlined text-purple-600">
-                web
-              </span>
-            }
-            title="Web Development"
-            para="Interfaces Development"
-          />
-          <Service
-            svg={
-              <span className="material-symbols-outlined text-amber-400">
-                database
-              </span>
-            }
-            title="API and Database"
-            para="Creating robust APIs and managing databases."
-          />
-          <Service
-            svg={
-              <span className="material-symbols-outlined text-green-500">
-                all_inclusive
-              </span>
-            }
-            title="DevOps"
-            para="Managing deployment and infrastructures."
-          />
+      <section
+        id="services"
+        className="border-y border-gray-400/50 bg-black/40 py-16"
+        aria-labelledby="services-heading"
+      >
+        <div className="section-container">
+          <h2 id="services-heading" className="mb-2 font-sans text-red">
+            Services
+          </h2>
+          <p className="mb-12 font-sans text-xl font-semibold text-gray-100 sm:text-2xl">
+            How I can help
+          </p>
+          <div className="flex flex-row flex-wrap justify-center gap-6 p-2">
+            <Service
+              svg={
+                <span className="material-symbols-outlined text-purple-600">
+                  web
+                </span>
+              }
+              title="Web development"
+              para="Interfaces and front-end architecture with performance in mind."
+            />
+            <Service
+              svg={
+                <span className="material-symbols-outlined text-amber-400">
+                  database
+                </span>
+              }
+              title="APIs & data"
+              para="REST APIs, integrations, and solid database design."
+            />
+            <Service
+              svg={
+                <span className="material-symbols-outlined text-green-500">
+                  all_inclusive
+                </span>
+              }
+              title="DevOps"
+              para="Deployments, environments, and maintainable infrastructure."
+            />
+          </div>
         </div>
       </section>
-      <section id="contact" className="p-5">
-        <h2 className="text-red mb-3">Get in Touch</h2>
-        <h3 className="mb-15">I'd love to hear from you</h3>
-        <div className="max-w-sm mx-auto">
+      <section
+        id="contact"
+        className="section-container py-16"
+        aria-labelledby="contact-heading"
+      >
+        <h2 id="contact-heading" className="mb-2 font-sans text-red">
+          Contact
+        </h2>
+        <p className="mb-12 font-sans text-xl font-semibold text-gray-100 sm:text-2xl">
+          Let&apos;s connect
+        </p>
+        <div className="mx-auto max-w-md">
           <Social
             social={
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6 shrink-0"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -107,7 +118,7 @@ export default function Main() {
           <Social
             social={
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6 shrink-0"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -129,7 +140,7 @@ export default function Main() {
           <Social
             social={
               <svg
-                className="w-6 h-6 text-gray-800 dark:text-white"
+                className="h-6 w-6 shrink-0 text-gray-800 dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -148,7 +159,9 @@ export default function Main() {
             href="https://github.com/miguelPRG"
           />
           <Social
-            social={<span className="material-symbols-outlined">mail</span>}
+            social={
+              <span className="material-symbols-outlined shrink-0">mail</span>
+            }
             name="Email"
             href="mailto:miguel@psafe365.com"
           />

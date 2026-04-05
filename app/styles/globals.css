@@ -1,16 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
-
 @theme {
-  --font-mono: "Inconsolata", monospace;
+  /* Display: DM Sans via next/font (--font-display on <html>) */
+  --font-sans:
+    var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  /* Body: Inconsolata via next/font (--font-body on <html>) */
+  --font-mono: var(--font-body), ui-monospace, monospace;
 
-  /* Cores principais */
+  /* Brand */
   --color-red: #e3646e !important;
   --color-purple: #bb72e9 !important;
   --color-blue: #3996db !important;
   --color-green: #82bc4f !important;
   --color-yellow: #eabd5f !important;
 
-  /* Cores secundárias */
   --color-gray-100: #e2e4e9 !important;
   --color-gray-200: #c0c4ce !important;
   --color-gray-300: #878ea1 !important;
@@ -25,8 +26,14 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
-  font-family: "Inconsolata", monospace;
+  font-family: var(--font-mono);
   font-optical-sizing: auto;
   font-style: normal;
   font-variation-settings: "wdth" 100;
@@ -36,28 +43,40 @@ body {
   padding: 0;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
 h1 {
-  @apply text-4xl font-extrabold;
+  @apply text-4xl font-bold tracking-tight sm:text-5xl;
 }
 
 h2 {
-  @apply text-3xl font-extrabold;
+  @apply text-3xl font-bold tracking-tight sm:text-4xl;
 }
 
 h3 {
-  @apply text-2xl font-extrabold;
+  @apply text-2xl font-semibold tracking-tight;
 }
 
 h4 {
-  @apply text-xl font-extrabold;
+  @apply text-xl font-semibold;
 }
 
 @layer components {
   .card {
-    @apply p-12 bg-gray-500 rounded-lg text-white flex flex-col gap-20 border-4;
+    @apply flex flex-col gap-20 rounded-xl border border-gray-400/80 bg-gray-500 p-10 text-white shadow-lg transition sm:p-12;
   }
 
   .card:hover {
     @apply border-gray-300;
+  }
+
+  .section-container {
+    @apply mx-auto max-w-6xl px-4 sm:px-6;
   }
 }

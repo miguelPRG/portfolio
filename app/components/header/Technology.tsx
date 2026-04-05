@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { h2 } from "motion/react-client";
 
 export default function Technology({ name }: { name: string }) {
   const options = new Set(["fastAPI", "react", "mongoDB", "nextJS"]);

@@ -16,7 +16,9 @@ describe("Photo Component", () => {
     it("should render the Photo component", () => {
         render(<Photo image={mockImage} />);
 
-        const imgElement = screen.getByAltText("Foto de perfil de Miguel Gonçalves");
+        const imgElement = screen.getByAltText(
+          "Retrato profissional de Miguel Gonçalves, desenvolvedor full stack",
+        );
         expect(imgElement).toBeInTheDocument();
     });
 

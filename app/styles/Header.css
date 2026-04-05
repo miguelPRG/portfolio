@@ -1,8 +1,19 @@
-header {
-  background-image: url("../../public/image.png");
+.header-hero {
+  background-image: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-black) 55%, transparent) 0%,
+      var(--color-gray-500) 100%
+    ),
+    url("../../public/image.png");
   background-size: cover;
   background-position: center;
-  min-height: 70vh;
-  padding: 5px;
-  margin-bottom: 150px;
+  min-height: min(85vh, 900px);
+  padding-bottom: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 1024px) {
+  .header-hero {
+    margin-bottom: 6rem;
+  }
 }

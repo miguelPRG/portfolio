@@ -21,12 +21,14 @@ describe("Project Component tests", () => {
     expect(
       screen.getByText("This is a test project description."),
     ).toBeInTheDocument();
-    const flipBtn = screen.getByRole("button", { name: /virar cartão/i });
+    const flipBtn = screen.getByRole("button", {
+      name: /flip card to see repository link/i,
+    });
     expect(flipBtn).toBeInTheDocument();
     expect(flipBtn.querySelector("svg")).toBeInTheDocument();
   });
 
-  it("Flip shows live project message", async () => {
+  it("Flip shows repository link", async () => {
     const user = userEvent.setup();
     render(
       <Project
@@ -37,11 +39,15 @@ describe("Project Component tests", () => {
       />,
     );
 
-    await user.click(screen.getByRole("button", { name: /virar cartão/i }));
+    await user.click(
+      screen.getByRole("button", { name: /flip card to see repository link/i }),
+    );
 
-    expect(screen.getByText("Watch this project live!")).toBeInTheDocument();
+    expect(screen.getByText("View repository")).toBeInTheDocument();
 
-    await user.click(screen.getByRole("button", { name: /voltar/i }));
+    await user.click(
+      screen.getByRole("button", { name: /flip back to project summary/i }),
+    );
   });
 
   it("Renders image with proper alt text", () => {
@@ -59,7 +65,8 @@ describe("Project Component tests", () => {
     ).toBeInTheDocument();
   });
 
-  it("Live link has correct attributes", () => {
+  it("Live link has correct attributes", async () => {
+    const user = userEvent.setup();
     render(
       <Project
         image={project1}
@@ -69,9 +76,11 @@ describe("Project Component tests", () => {
       />,
     );
 
-    const link = screen.getByRole("link", {
-      name: /watch this project live!/i,
-    });
+    await user.click(
+      screen.getByRole("button", { name: /flip card to see repository link/i }),
+    );
+
+    const link = screen.getByRole("link", { name: /view repository/i });
     expect(link).toHaveAttribute("href", "https://example.com");
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
@@ -87,9 +96,10 @@ describe("Project Component tests", () => {
       />,
     );
 
-    const backBtn = screen.getByRole("button", { name: /voltar/i });
+    const backBtn = screen.getByRole("button", {
+      name: /flip back to project summary/i,
+    });
     expect(backBtn).toBeInTheDocument();
     expect(backBtn.querySelector("svg")).toBeInTheDocument();
   });
 });
-

@@ -12,5 +12,6 @@ beforeEach(() => {
     unobserve() {}
     disconnect() {}
   }
-  (globalThis as any).IntersectionObserver = MockIntersectionObserver as any;
+  globalThis.IntersectionObserver =
+    MockIntersectionObserver as unknown as typeof IntersectionObserver;
 });

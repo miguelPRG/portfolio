@@ -1,34 +1,40 @@
+// @ts-expect-error Side-effect CSS import is handled by the bundler
 import "../../styles/Header.css";
 import image from "../../images/foto.png";
 import Photo from "./Photo";
 
 export default function Header() {
   return (
-    <header>
-      <div className="flex flex-col items-center gap-10">
+    <header className="header-hero">
+      <div className="section-container flex flex-col items-center gap-12 pb-16 pt-8 sm:pb-24">
         <div
           id="bio"
-          className="mt-30 flex flex-col items-center w-1/2 text-white text-justify-center"
+          className="flex max-w-2xl flex-col items-center text-center text-gray-100"
         >
           <Photo image={image} />
-          <p className="mb-5">
-            Hello World! My name is{" "}
-            <span className="text-red font-bold">Miguel Gonçalves</span> and I
-            am
+          <p className="mb-3 font-sans text-sm font-medium uppercase tracking-[0.2em] text-gray-300">
+            Portfolio
           </p>
-          <h1 className="mb-5 text-center">Full Stack Developer</h1>
-          <p className="text-gray-300 w-full max-w-xl">
-            I transform ideas into high-quality, intuitive, and easy-to-use
-            software. I have the ability to adapt to any development technology
-            with considerable ease. Hover over my picture to see my skills!
+          <p className="mb-2 font-sans text-lg text-gray-200 sm:text-xl">
+            Hi — I&apos;m{" "}
+            <span className="font-semibold text-red">Miguel Gonçalves</span>,
+          </p>
+          <h1 className="mb-6 text-balance">
+            Full stack developer building reliable web products
+          </h1>
+          <p className="max-w-xl text-pretty text-base leading-relaxed text-gray-300 sm:text-lg">
+            I turn ideas into clear, maintainable software — from interfaces to
+            APIs and infrastructure. Comfortable across the stack; hover the
+            photo to see technologies I use most.
           </p>
         </div>
         <a
           href="#projects"
-          className="cursor-pointer hover:opacity-70 transition-opacity"
+          className="cursor-pointer rounded-full p-2 text-gray-300 transition hover:text-white hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red"
+          aria-label="Scroll to projects"
         >
           <svg
-            className="w-15 h-15 text-gray-300"
+            className="h-12 w-12"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
