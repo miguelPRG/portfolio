@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Miguel Rodrigues Portfolio
+
+This is a modern, single-page portfolio built to present my work, skills, and contact details in a clean and responsive layout. The site is designed as a polished developer showcase with a strong visual hierarchy, animated sections, and live project data pulled from GitHub when available.
+
+## Preview
+
+![Portfolio screenshot](./screenshot.png)
+
+## How it works
+
+The application is split into a React frontend and a small Express backend.
+
+The frontend is a portfolio landing page with these sections:
+
+- A hero section with my name, role, and call to action.
+- A projects section that highlights pinned GitHub repositories.
+- A skills section with the main technologies I work with.
+- An about section with background and timeline information.
+- A contact section with direct links and a message form.
+
+The projects section first tries to load live pinned repositories from GitHub. If that fails, it falls back to curated local project data so the portfolio still renders correctly offline or when the API is unavailable.
+
+The contact form sends messages through the Express backend. The backend validates the input, applies rate limiting, checks the request origin, and forwards the message through Brevo email delivery.
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Express 5
+- Zod
+- React Hook Form
+- Sonner for notifications
+- Lucide React for icons
+- dotenv for server configuration
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run dev` starts both the frontend and the Express server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Server configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `server/.env` file with the following variables:
 
-## Learn More
+```env
+PORT=3001
+CLIENT_ORIGIN=http://localhost:5173
+BREVO_API_KEY=your-brevo-api-key
+CONTACT_TO_EMAIL=your-email@example.com
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Useful scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run dev        # Start client and server together
+npm run server     # Start only the Express API
+npm run server:dev # Start the API with file watching
+npm run build      # Build the production frontend
+npm run preview    # Preview the production build locally
+npm run lint       # Run ESLint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```text
+src/
+├── components/   # Portfolio sections and shared UI pieces
+├── data/         # Profile, projects, skills, and timeline content
+├── hooks/        # Reusable React hooks
+├── lib/          # GitHub integration and small utilities
+├── App.tsx       # Main page composition
+├── main.tsx      # Application entry point
+└── index.css     # Global styles
+server/
+└── index.js      # Contact endpoint and Brevo integration
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The projects section is data-driven and can render live GitHub content or a local fallback set.
+- The contact form submits to `/api/contact`, so the frontend and backend should run together in development.
+- If you want to update the screenshot, replace `screenshot.png` in the repository root.
