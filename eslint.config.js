@@ -11,14 +11,16 @@ export default tseslint.config(
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 2022,
+      sourceType: "module",
       globals: globals.node,
     },
   },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ["**/*.{ts,tsx}"],
+    files: ["src/**/*.{ts,tsx}"],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 2025,
+      sourceType: "module",
       globals: globals.browser,
     },
     plugins: {
@@ -32,6 +34,24 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+  {
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    files: ["*.config.ts", "vite.config.ts"],
+    languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: "module",
+      globals: globals.node,
+    },
+  },
+  {
+    extends: [js.configs.recommended],
+    files: ["*.config.js"],
+    languageOptions: {
+      ecmaVersion: 2023,
+      sourceType: "module",
+      globals: globals.node,
     },
   }
 );

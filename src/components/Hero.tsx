@@ -55,10 +55,10 @@ const Hero: React.FC = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => scrollTo('projects')}
+              onClick={() => scrollTo('products')}
               className="px-7 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 transition-shadow"
             >
-              View Projects
+              View Products
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
       </div>
 
       <motion.button
-        onClick={() => scrollTo('projects')}
+        onClick={() => scrollTo('products')}
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.8, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 hover:text-zinc-300"

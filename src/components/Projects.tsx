@@ -45,14 +45,14 @@ const Projects: React.FC = () => {
           className="text-center mb-14"
         >
           <span className="text-sm font-mono text-blue-400 tracking-widest uppercase">
-            Featured Work
+            Open Source
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-zinc-50">
-            Pinned Projects
+            GitHub Projects
           </h2>
           <p className="mt-4 text-zinc-400 max-w-xl mx-auto">
-            A selection of my pinned GitHub repositories showcasing full-stack
-            craftsmanship across the modern web.
+            Public repositories where you can explore the code, architecture
+            and engineering decisions behind my work.
           </p>
 
           <div className="mt-5 flex items-center justify-center">

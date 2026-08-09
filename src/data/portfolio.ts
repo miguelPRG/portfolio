@@ -12,6 +12,37 @@ export interface Project {
   featured?: boolean;
 }
 
+export interface LaunchedProject {
+  title: string;
+  description: string;
+  contribution: string;
+  tech: string[];
+  url: string;
+  image: string;
+  status: 'Live' | 'Beta' | 'Completed';
+}
+
+export const launchedProjects: LaunchedProject[] = [
+  {
+    title: 'CleanAL',
+    description:
+      'Cleaning management platform for short-term rentals. It turns Airbnb and Booking check-outs into scheduled cleaning jobs with shareable, no-login checklists.',
+    contribution:
+      'Built the end-to-end product: property and calendar management, iCal synchronisation, cleaning workflows, public checklist links and completion notifications.',
+    tech: [
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Supabase',
+      'TanStack Query',
+      'Tailwind CSS',
+    ],
+    url: 'https://clean-al-demo.vercel.app/demo',
+    image: '/projects/cleanal.png',
+    status: 'Live',
+  },
+];
+
 export const profile = {
   name: 'Miguel Gonçalves',
   username: 'miguelPRG',
@@ -31,6 +62,19 @@ export const profile = {
 };
 
 export const projects: Project[] = [
+  {
+    repository: 'Pfire',
+    title: 'PFire',
+    description:
+      'Safety inspection platform for emergency equipment, with reusable templates and customizable client reports.',
+    tech: ['React', 'TypeScript', 'FastAPI', 'MongoDB', 'GraphQL'],
+    github: 'https://github.com/miguelPRG/Pfire',
+    demo: 'https://pfire.miguelgoncalves2024.workers.dev/login',
+    image: 'https://github.com/miguelPRG/Pfire/blob/main/image.jpeg?raw=true',
+    stars: 0,
+    forks: 0,
+    gradient: 'from-orange-500/20 to-red-500/20',
+  },
   {
     repository: 'ClassRoomate',
     title: 'ClassRoomate',

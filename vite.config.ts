@@ -6,7 +6,11 @@ export default defineConfig(({ command, mode }) => {
   let server;
 
   if (command === "serve") {
-    const serverEnv = loadEnv(mode, path.resolve(__dirname, "server"), "");
+    const serverEnv = loadEnv(
+      mode,
+      path.resolve(import.meta.dirname, "server"),
+      "",
+    );
     const apiPort = serverEnv.PORT;
 
     if (!apiPort) {
@@ -28,7 +32,7 @@ export default defineConfig(({ command, mode }) => {
     plugins: [react()],
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"),
+        "@": path.resolve(import.meta.dirname, "./src"),
       },
     },
   };

@@ -5,7 +5,8 @@ import { profile } from '@/data/portfolio';
 
 const quickLinks = [
   { label: 'Home', id: 'home' },
-  { label: 'Projects', id: 'projects' },
+  { label: 'Products', id: 'products' },
+  { label: 'Open Source', id: 'projects' },
   { label: 'Skills', id: 'skills' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
