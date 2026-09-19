@@ -7,7 +7,8 @@ config({ path: new URL('./.env', import.meta.url), quiet: true });
 
 const requiredEnv = [
   'PORT',
-  'BREVO_API_KEY',
+  'RESEND_API_KEY',
+  'RESEND_FROM_EMAIL',
   'CONTACT_TO_EMAIL',
 ];
 const originEnv = process.env.CLIENT_ORIGINS ?? process.env.CLIENT_ORIGIN;
@@ -83,6 +84,31 @@ function escapeHtml(value) {
     .replaceAll("'", '&#039;');
 }
 
+async function sendResendEmail({ to, subject, text, html, replyTo }) {
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: process.env.RESEND_FROM_EMAIL,
+      to,
+      reply_to: replyTo,
+      subject,
+      text,
+      html,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Resend rejected the message (${response.status}): ${errorBody.slice(0, 1_000)}`);
+  }
+
+  return response.json();
+}
+
 if (process.env.TRUST_PROXY) {
   app.set('trust proxy', Number(process.env.TRUST_PROXY));
 }
@@ -115,55 +141,52 @@ app.post(
     // These values come from the contact form.
     const { name, email, message } = parsed.data;
 
-    // These values belong to Brevo and must remain server-side.
-    const { BREVO_API_KEY, CONTACT_TO_EMAIL } = process.env;
+    // These values belong to Resend and must remain server-side.
+    const { CONTACT_TO_EMAIL } = process.env;
 
-    console.info('[contact] Sending message through Brevo');
+    const ownerText = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+    const ownerHtml = `
+      <h2>New portfolio message</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p>${escapeHtml(message).replaceAll('\n', '<br>')}</p>
+    `;
+    const confirmationText = `Hi ${name},\n\nThanks for contacting me. I received your message and will get back to you soon.\n\nYour message:\n${message}`;
+    const confirmationHtml = `
+      <h2>Thanks for contacting me, ${escapeHtml(name)}!</h2>
+      <p>I received your message and will get back to you soon.</p>
+      <hr>
+      <p><strong>Your message:</strong></p>
+      <p>${escapeHtml(message).replaceAll('\n', '<br>')}</p>
+    `;
+
+    console.info('[contact] Sending notification and confirmation through Resend');
 
     try {
-      const brevoResponse = await fetch(
-        'https://api.brevo.com/v3/smtp/email',
-        {
-          method: 'POST',
-          headers: {
-            'api-key': BREVO_API_KEY,
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify({
-            sender: {
-              name: 'Portfolio',
-              email: CONTACT_TO_EMAIL,
-            },
-            to: [{ email: CONTACT_TO_EMAIL }],
-            // Replies go to the visitor who submitted the form.
-            replyTo: { name, email },
-            subject: `Portfolio message from ${name}`,
-            textContent: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-            htmlContent: `
-              <h2>New portfolio message</h2>
-              <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-              <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-              <p>${escapeHtml(message).replaceAll('\n', '<br>')}</p>
-            `,
-          }),
-        },
-      );
-
-      if (!brevoResponse.ok) {
-        const errorBody = await brevoResponse.text();
-        console.error('[contact] Brevo rejected the message', {
-          status: brevoResponse.status,
-          response: errorBody.slice(0, 1_000),
-        });
-        return response.status(502).json({ error: 'Could not send message.' });
-      }
+      const [ownerResult, confirmationResult] = await Promise.all([
+        sendResendEmail({
+          to: [CONTACT_TO_EMAIL],
+          replyTo: email,
+          subject: `Portfolio message from ${name}`,
+          text: ownerText,
+          html: ownerHtml,
+        }),
+        sendResendEmail({
+          to: [email],
+          replyTo: CONTACT_TO_EMAIL,
+          subject: 'Thanks for contacting my portfolio',
+          text: confirmationText,
+          html: confirmationHtml,
+        }),
+      ]);
 
       console.info('[contact] Message sent successfully', {
-        status: brevoResponse.status,
+        ownerMessageId: ownerResult.id,
+        confirmationMessageId: confirmationResult.id,
       });
       return response.status(201).json({ ok: true });
     } catch (error) {
-      console.error('[contact] Failed to contact Brevo', error);
+      console.error('[contact] Failed to contact Resend', error);
       return response.status(502).json({ error: 'Could not send message.' });
     }
   },

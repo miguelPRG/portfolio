@@ -20,7 +20,7 @@ The frontend is a portfolio landing page with these sections:
 
 The projects section first tries to load live pinned repositories from GitHub. If that fails, it falls back to curated local project data so the portfolio still renders correctly offline or when the API is unavailable.
 
-The contact form sends messages through the Express backend. The backend validates the input, applies rate limiting, checks the request origin, and forwards the message through Brevo email delivery.
+The contact form sends messages through the Express backend. The backend validates the input, applies rate limiting, checks the request origin, and uses Resend to send both a notification to the portfolio owner and a confirmation to the visitor.
 
 ## Tech Stack
 
@@ -51,7 +51,8 @@ Create a `server/.env` file with the following variables:
 ```env
 PORT=3001
 CLIENT_ORIGIN=http://localhost:5173
-BREVO_API_KEY=your-brevo-api-key
+RESEND_API_KEY=your-resend-api-key
+RESEND_FROM_EMAIL=Portfolio <onboarding@resend.dev>
 CONTACT_TO_EMAIL=your-email@example.com
 ```
 
@@ -62,6 +63,8 @@ CLIENT_ORIGINS=https://portfolio-henna-alpha-22.vercel.app
 ```
 
 `CLIENT_ORIGIN` remains supported for local development and backwards compatibility.
+
+Resend requires `RESEND_FROM_EMAIL` to be an address from a verified domain. The visitor's address is used as `reply_to` on the owner notification, rather than as the sender, so replies go directly to the visitor without violating email authentication rules.
 
 ### Useful scripts
 
@@ -86,7 +89,7 @@ src/
 ├── main.tsx      # Application entry point
 └── index.css     # Global styles
 server/
-└── index.js      # Contact endpoint and Brevo integration
+└── index.js      # Contact endpoint and Resend integration
 ```
 
 ## Notes
