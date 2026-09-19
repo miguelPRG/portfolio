@@ -55,6 +55,14 @@ BREVO_API_KEY=your-brevo-api-key
 CONTACT_TO_EMAIL=your-email@example.com
 ```
 
+For production, set `CLIENT_ORIGINS` on the API host to the allowed frontend URL. Multiple origins can be separated by commas, for example:
+
+```env
+CLIENT_ORIGINS=https://portfolio-henna-alpha-22.vercel.app
+```
+
+`CLIENT_ORIGIN` remains supported for local development and backwards compatibility.
+
 ### Useful scripts
 
 ```bash

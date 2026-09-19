@@ -7,11 +7,15 @@ config({ path: new URL('./.env', import.meta.url), quiet: true });
 
 const requiredEnv = [
   'PORT',
-  'CLIENT_ORIGIN',
   'BREVO_API_KEY',
   'CONTACT_TO_EMAIL',
 ];
+const originEnv = process.env.CLIENT_ORIGINS ?? process.env.CLIENT_ORIGIN;
 const missingEnv = requiredEnv.filter((key) => !process.env[key]);
+
+if (!originEnv) {
+  missingEnv.push('CLIENT_ORIGINS or CLIENT_ORIGIN');
+}
 
 if (missingEnv.length > 0) {
   throw new Error(`Missing variables in server/.env: ${missingEnv.join(', ')}`);
@@ -19,17 +23,17 @@ if (missingEnv.length > 0) {
 
 const app = express();
 const port = Number(process.env.PORT);
-let allowedOrigin;
+let allowedOrigins;
 
 if (!Number.isInteger(port) || port < 1 || port > 65_535) {
   throw new Error('PORT in server/.env must be a valid port number.');
 }
 
 try {
-  allowedOrigin = new URL(process.env.CLIENT_ORIGIN).origin;
+  allowedOrigins = originEnv.split(',').map((value) => new URL(value.trim()).origin);
 } catch {
   throw new Error(
-    'CLIENT_ORIGIN must be a complete URL, for example http://localhost:3000.',
+    'CLIENT_ORIGINS must contain complete URLs, for example http://localhost:3000.',
   );
 }
 
@@ -50,15 +54,15 @@ const contactLimiter = rateLimit({
 function checkCors(request, response, next) {
   const origin = request.get('origin');
 
-  if (origin !== allowedOrigin) {
+  if (!origin || !allowedOrigins.includes(origin)) {
     console.warn('[contact] Request blocked by CORS', {
       origin: origin ?? 'missing',
-      allowedOrigin,
+      allowedOrigins,
     });
     return response.status(403).json({ error: 'Origin not allowed.' });
   }
 
-  response.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+  response.setHeader('Access-Control-Allow-Origin', origin);
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   response.setHeader('Vary', 'Origin');
